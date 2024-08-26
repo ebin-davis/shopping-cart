@@ -11,6 +11,7 @@ var app = express();
 var fileUpload = require("express-fileupload");
 var db = require("./config/connection");
 var session =require('express-session')
+const nocache = require("nocache");
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -25,7 +26,7 @@ app.engine(
 );
 app.use(logger("dev"));
 app.use(express.json());
-
+app.use(nocache());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
